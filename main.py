@@ -1,7 +1,7 @@
 import datetime  
 
 print("Welcome Students, we are here for the students to type their grade!(GCSE) ")
-print("Also this is a demo!")
+print("Also this is a demo!, where you can fork it and make it better, so it is open source.")
 print("My name is Education, and I am here to see your GCSE results: ")
 
 name = input("What is your name? ")
