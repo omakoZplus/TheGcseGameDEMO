@@ -1,145 +1,160 @@
 import datetime  
 
-print("Welcome Students, we are here for the students to type their grade!(GCSE) ")
-print("Also this is a demo!, where you can fork it and make it better, so it is open source.")
-print("My name is Education, and I am here to see your GCSE results: ")
+def get_grade_feedback(student_name, subject_name, grade):
+    if grade == "N" or grade == "Not Taken":
+        return f"Not taken {subject_name}, {student_name}? Trying to hide your incompetence? Or just lazy? Either way, it's noted."
+    elif grade == "U":
+        return f"A 'U' in {subject_name}? Oh, how... *predictable*. Don't worry, {student_name}, the slime pits always need more... *volunteers*."
+    elif grade == "E":
+        return f"An 'E' in {subject_name}, {student_name}? Exquisitely awful. Did you even open a book? Or was 'E' for 'Effortless failure'?"
+    elif grade == "D":
+        return f"A 'D,' {student_name}? Delectably dreadful! You're really scraping the bottom of the barrel for {subject_name}, aren't you?"
+    elif grade == "1":
+        return f"A '1' in {subject_name}, {student_name}. One whole point! Did you get that for spelling your name right, or was that a lucky guess?"
+    elif grade == "2":
+        return f"A '2' for {subject_name}. How... mediocre. {student_name}, you're perfectly balanced, as all failures should be. Not quite rock bottom, but aspiring!"
+    elif grade == "3":
+        return f"A '3' in {subject_name}, {student_name}. So you *almost* tried. What a pity. That little flicker of effort, wasted."
+    elif grade == "4":
+        return f"A '4' in {subject_name}? You actually passed, {student_name}? Hmph. Don't get any ideas above your station. The system must be flawed."
+    elif grade == "5":
+        return f"A '5' in {subject_name}, {student_name}? Adequate, I suppose. For a human. Barely."
+    elif grade == "6":
+        if subject_name == "Maths":
+            return f"A '6' in Maths, {student_name}? Not entirely repulsive. You might just survive the next culling... if you're lucky. And if your calculator didn't do all the work."
+        elif subject_name == "English Language" or subject_name == "English Literature":
+            return f"A '6' in {subject_name}, {student_name}? So you can string a few words together or understand basic plots. Don't strain yourself."
+        else:
+            return f"A '6' in {subject_name}, {student_name}? Slightly less pathetic than I expected."
+    elif grade == "7":
+        if subject_name == "Maths":
+            return f"A '7' in Maths? You're making the other morsels look bad, {student_name}. Are you sure you didn't cheat?"
+        elif subject_name == "English Language" or subject_name == "English Literature":
+            return f"A '7' in {subject_name}, {student_name}? Such... competence. It's almost unsettling. Stop it."
+        else:
+            return f"A '7' in {subject_name}, {student_name}? Well, aren't you a little overachiever. Annoying."
+    elif grade == "8":
+        if subject_name == "Maths" or subject_name == "English Language":
+            return f"An '8' in {subject_name}! Impressive... for a snack. Are you trying to become my new favorite, {student_name}? Don't bother, I eat my favorites last."
+        elif subject_name == "English Literature":
+            return f"An '8' in English Literature, {student_name}! You actually understood those dusty old books? I'm mildly surprised. Or perhaps you just memorized the cliff notes."
+        else:
+            return f"An '8' in {subject_name}! {student_name}, you're dangerously close to being interesting. Tone it down."
+    elif grade == "9":
+        if subject_name == "Maths":
+            return f"A '9' in Maths, {student_name}? Hah! So you've got a bit of brain in that skull after all! Don't expect a gold star, though. Maybe just a slightly delayed doom. Or a more complex equation for your eulogy."
+        elif subject_name == "English Language":
+            return f"A '9' in English Language, {student_name}? Fine, you're eloquent. Now be quiet. Your linguistic prowess is giving me a headache."
+        elif subject_name == "English Literature":
+            return f"A '9' in English Literature, {student_name}! So you can analyze Shakespeare, big deal. Can you analyze your impending doom? That's the real test."
+        else:
+            return f"A '9' in {subject_name}, {student_name}! Show off. You'll be the first one I pick for the... 'advanced challenges'."
+    else:
+        return f"Eh? What's this gibberish for {subject_name}, {student_name}? Did you type that with your face? Try a real grade, or don't try at all."
 
-name = input("What is your name? ")
-surname = input("What is your surname? ")
+def get_student_details():
+    name = input("Alright, spit it out. Your designated noise? (First Name): ")
+    surname = input(f"And the other noise they call you, {name}? (Surname): ")
 
-date_of_birth = input("So your name is " + name + " " + surname + " and what is your date of birth? (in DD/MM/YYYY): ")
+    while True:
+        date_of_birth_str = input(f"Date of... *creation*, I suppose, {name} {surname}? (DD/MM/YYYY, if you can manage that): ")
+        try:
+            birthdate = datetime.datetime.strptime(date_of_birth_str, "%d/%m/%Y").date()
+            break  # Exit loop if date is valid
+        except ValueError:
+            print("Ugh, even a simple date is too complex for you? TRY AGAIN: DD/MM/YYYY!")
 
-#This is how a import works, for a date of birth
-birthdate=datetime.datetime.strptime(date_of_birth,"%d/%m/%Y").date() 
+    High_School = input(f"And what dreary institution claims to be shaping your tiny mind, {name}? (College Name): ")
+    print(f"So, you're {name} {surname}, spawned on {birthdate.strftime('%d %B %Y')}. Fascinating. And you fester at {High_School}. Thrilling.")
+    return name, surname, birthdate, High_School
 
-print("So your birthdate is " + birthdate.strftime('%d/%B/%Y'))
-
-High_School = input("What college do you go to? ")
-print("So you go to " + High_School)
-print("Thank you for giving information " + name)
-print("**********************************************************************************************************")
-print("Now is time for grades, hehe?")
-
-grademaths = input("What is your grade for maths, please tell me: ")
-
-if grademaths == "N" or grademaths == "Not Taken":
-    print("Why didn't you take maths, well you can resit, but please pass this exam please!")
-elif grademaths == "U":
-    print("Why did you fucking get a grade U on Maths, you dumbass not knowing basic east maths, like 1+1, you big failure, your future is trash and you even didn't even try")
-elif grademaths == "E":
-    print("What is this grade, you tried very little in your GCSE, you failed the test you failure. ")
-elif grademaths == "D":
-    print("You got a devoloping grade, that so hilourious, you failed and that your future is the worst!")
-elif grademaths == "1":
-    print("What is this grade you got, a 1 why didn't you try, you could passed if you did get a 4 you failure, please try")
-elif grademaths == "2":
-    print("You got a 2, you failed, but atleast your best, next time do better in the resit and pass please you failure!")
-elif grademaths == "3":
-    print("You nearly there with a 4, but can please try a little more to PASS please in resit to get a 4 or higher!")
-elif grademaths == "4":
-    print("You did well this one, well done you passed!")
-elif grademaths == "5":
-    print("You are trying atleast, i am happy that you got a 5, which is better!")
-elif grademaths == "6":
-    print("I am happy for you, you got a 6 in Maths which is enough for Maths A level!")
-elif grademaths == "7":
-    print("You got a 7, i am proud of you " + name + " and well done, you can get better education in university and college.")
-elif grademaths == "8":
-    print("Yes, you got the grade I wanted to see, I congrate you, you are better than the other failures, that is why I like you more than the other failures that fail, emglish and maths.")
-elif grademaths == "9":
-    print("You got the highest grade, now I want to take you to univeristy instantly, with the best students of the world, I say in Maths which is the best! and no freedom for you to choose something else hahhahahahahhahahah!")
-else:
-    print("This is demo, so no full list of grades and courses or did you type anything wrong?")
-    exit()
-
-gradeenglishlanguage = input("What is your grade for english, please tell me: ")
-
-if gradeenglishlanguage == "N" or gradeenglishlanguage == "Not Taken":
-    print("Why didn't you take english, well you can resit, but please pass this exam please!")
-elif gradeenglishlanguage == "U":
-    print("Why did you fucking get a grade U on English n/, you dumbass not knowing how to read and write small words, like 1+1, you big failure, your future is trash and you even didn't even try")
-elif gradeenglishlanguage == "E":
-    print("What is this grade, you tried very little in your GCSE, you failed the test you failure. ")
-elif gradeenglishlanguage == "D":
-    print("You got a devoloping grade, that so hilourious, you failed and that your future is the worst!")
-elif gradeenglishlanguage == "1":
-    print("What is this grade you got, a 1 why didn't you try, you could passed if you did get a 4 you failure, please try")
-elif gradeenglishlanguage == "2":
-    print("You got a 2, you failed, but atleast your best, next time do better in the resit and pass please you failure!")
-elif gradeenglishlanguage == "3":
-    print("You nearly there with a 4, but can please try a little more to PASS please in resit to get a 4 or higher!")
-elif gradeenglishlanguage == "4":
-    print("You did well this one, well done you passed!")
-elif gradeenglishlanguage == "5":
-    print("You are trying atleast, i am happy that you got a 5, which is better!")
-elif gradeenglishlanguage == "6":
-    print("Yes, you passed english, but also you got a fine grade and i am very happy!")
-elif gradeenglishlanguage == "7":
-    print("Yes, higher and higher Mr " + name + " and that is a good grade for english for creative writing and other bigger opportunities.")
-elif gradeenglishlanguage == "8":
-    print("Yes, you got the grade I wanted to see, I congrate you, you are better than the other failures, that is why I like you more than the other failures that fail, emglish and maths.")
-elif gradeenglishlanguage == "9":
-    print("You got the highest grade, now I want to take you to univeristy instantly, with the best students of the world, I say in english and no freedom for you to choose something else hahhahahahahhahahah!")
-else:
-    print("This is demo, so no full list of grades and courses or did you type anything wrong?")
-    exit()
+def input_subject_grades(student_name):
+    print("**********************************************************************************************************")
+    print(f"Alright, {student_name}, let's get to the dreary part: your so-called 'grades'. Try not to bore me. Heh heh.")
     
-gradeenglishliterature = input("What is your grade for english, please tell me: ")
+    grades = {}
+    subjects = ["Maths", "English Language", "English Literature"]
+    
+    for subject in subjects:
+        grade_input = input(f"What's the damage for {subject.title()}, {student_name}? ")
+        feedback = get_grade_feedback(student_name, subject, grade_input)
+        print(feedback)
+        if feedback.startswith("Eh? What's this gibberish"): # Check for unrecognized grade message
+            pass
+        grades[subject] = grade_input
+        
+    return grades
 
-if gradeenglishliterature == "N" or gradeenglishlanguage == "Not Taken":
-    print("Why didn't you take english, well you can resit, but please pass this exam please! Unless you are doing a diffrent course that doesn't require!")
-elif gradeenglishliterature == "U":
-    print("Why did you fucking get a grade U on English n/, you dumbass not knowing how to read and write small words, like 1+1, you big failure, your future is trash and you even didn't even try")
-elif gradeenglishliterature == "E":
-    print("What is this grade, you tried very little in your GCSE, you failed the test you failure. ")
-elif gradeenglishliterature == "D":
-    print("You got a devoloping grade, that so hilourious, you failed and that your future is the worst!")
-elif gradeenglishliterature == "1":
-    print("What is this grade you got, a 1 why didn't you try, you could passed if you did get a 4 you failure, please try")
-elif gradeenglishliterature == "2":
-    print("You got a 2, you failed, but atleast your best, next time do better in the resit and pass please you failure!")
-elif gradeenglishliterature == "3":
-    print("You nearly there with a 4, but can please try a little more to PASS please in resit to get a 4 or higher!")
-elif gradeenglishliterature == "4":
-    print("You did well this one, well done you passed!")
-elif gradeenglishliterature == "5":
-    print("You are trying atleast, i am happy that you got a 5, which is better!")
-elif gradeenglishliterature == "6":
-    print("Yes, you passed english, but also you got a fine grade and i am very happy!")
-elif gradeenglishliterature == "7":
-    print("Yes, higher and higher Mr " + name + " and that is a good grade for english for creative writing and other bigger opportunities.")
-elif gradeenglishliterature == "8":
-    print("You did it, you did it you got a grade 8, which is great when you are reading MacBeth and poems in University.")
-elif gradeenglishliterature == "9":
-    print("Well done " + name + " " + surname + ", you did it, you can use this for your university to choose one of the best courses for writing your story, like Shakespeare ooooo! yes.")
-else:
-    print("This is demo, so no full list of grades and courses or did you type anything wrong?")
-    exit()
+print("💀 Welcome, unfortunate souls, to the Grade Grinder! 💀")
+print("This is a demo, or so they tell me. Feel free to make it... worse. I dare you.")
+print("I am Ed, your delightful tormentor for this... exercise. Heh heh heh.")
+
+# Get student details
+name, surname, birthdate, high_school = get_student_details()
+
+# Input subject grades
+grades = input_subject_grades(name)
+
+# Display grade summary
 print("*************************************************************************")
-print("The grades you got: ")
-print("Maths GCSE: " + grademaths)
-print("English Language GCSE: " + gradeenglishlanguage)
-print("English Literature GCSE: " + gradeenglishliterature)
+print(f"Behold, {name}, the grand testament to your... efforts:") 
+print("Maths GCSE: " + grades.get("Maths", " wisely left blank?"))
+print("English Language GCSE: " + grades.get("English Language", " too scared to enter?"))
+print("English Literature GCSE: " + grades.get("English Literature", " ...or just illiterate?"))
 print("***********************************************************************************")
-allcourses = (grademaths and gradeenglishlanguage and gradeenglishliterature)
+# print(f"There you have it, {name}. Your 'results'. Now scurry along. I have important... brooding to do. And don't trip on your way out.")
 
-if allcourses == "N" or allcourses == "Not Taken":
-    print("You need to resit only maths and english language, and pass for to attend university in the future or good jobs")
-if grademaths and gradeenglishlanguage == "U":
-    print("The death penalty is here for you to die, because this is the lowest grade of gcse!!, and a abysmal adomanation.")
-if grademaths and gradeenglishlanguage == "5":
-    print("Well done you got both GCSE at grade 5, which means I will tell you a secret is that this is a demo of GCSE RESULTS for fun")
-if grademaths and gradeenglishlanguage == "7":
-    print("You, can now go to University, but keep improving for a grade 9 at A level please or you will become a failure!")
-if grademaths and gradeenglishlanguage == "9":
-    print("You got a grade 9 on both courses which means you can do one of them in University without a problem and a hasstle, of choosing any course. ")
-if allcourses == "9":
-    print("Yes, finally the best student in history, i will make him my slave, because he has the best grades and he taked in all courses, he is the perfect person, the iq of infinity!")
-    fight = input("Do you want to punch or knife hiddenly? choose one option? ")
-    if fight == "punch":
-        print("You punched education, you pay the price for it, and education survived and forced you to be a slave to education for the rest of life, abusing me to be perfect!")
-    elif fight == "knife":
-        print("You knifed education, you killed the guy, and now you escaped, to find another country! .")
-        escape1 = input("You trying to escape the place, as fast and trying to find a escape, and you suddenly find 2 places, Spain or Dubai, which one you choose: ")
-        if escape1 == "Spain" or escape1 == "spain":
-            print("hell")
+# --- Start of Reimplemented Monster's Game Ending Sequence ---
+print("\n***********************************************************************************")
+print("Now, for the grand finale, based on this... *display*...")
+
+math_grade = grades.get("Maths")
+eng_lang_grade = grades.get("English Language")
+eng_lit_grade = grades.get("English Literature")
+
+low_tier_grades = ["U", "E", "D", "1", "2", "3"]
+passing_grades = ["4", "5", "6", "7", "8", "9"] # N/Not Taken is handled separately
+
+# Scenario 1: All Nines
+if math_grade == "9" and eng_lang_grade == "9" and eng_lit_grade == "9":
+    print(f"Hmph, {name}. All nines? You're not as dim-witted as the others, are you? Perhaps you're worthy of... *middle management* in my little corner of the abyss. Don't get excited, it's still terrible.")
+    choice = input(f"Do you accept your slightly less agonizing fate, {name}? (yes/no): ").lower()
+    if choice == "yes":
+        print("Wise choice. Now get to work! The paperwork for lost souls is piling up.")
+    elif choice == "no":
+        print("Ungrateful whelp! Fine, back to the slime pits with the rest of them!")
+    else:
+        print("Indecisive, are we? To the pits it is!")
+
+# Scenario 2: All Us (or all "U", "E", "D", "1", "2", "3")
+elif math_grade in low_tier_grades and \
+     eng_lang_grade in low_tier_grades and \
+     eng_lit_grade in low_tier_grades:
+    print(f"Oh, {name}, this is just... *chef's kiss*... magnificently awful! All these failing grades! You'll make a fine example for the others.")
+    choice = input(f"Are you ready to embrace your destiny as my new favorite paperweight, {name}? (yes/embrace it): ").lower()
+    if choice == "yes" or choice == "embrace it":
+        print("Excellent! Your dedication to failure is truly inspiring. I'll find a nice, dusty shelf for you.")
+    else:
+        print("No enthusiasm? Don't worry, you'll fit right in with the other inanimate objects.")
+
+# Scenario 4: At least one "N" or "Not Taken" for a core subject. (Checked before Scenario 3 to give it precedence)
+elif math_grade in ["N", "Not Taken"] or \
+     eng_lang_grade in ["N", "Not Taken"] or \
+     eng_lit_grade in ["N", "Not Taken"]:
+    print(f"Skipped a subject, did we, {name}? Trying to be clever and avoid my judgment? It doesn't work like that.")
+    print("Your cowardice has been noted. Now begone.")
+
+# Scenario 3: Passed all core subjects (all are "4" or higher) - and not all 9s (handled by Scenario 1)
+elif math_grade in passing_grades and \
+     eng_lang_grade in passing_grades and \
+     eng_lit_grade in passing_grades:
+    print(f"So, {name}, you managed to pass everything. Adequate, I suppose. Don't expect a parade.")
+    print("Now, vanish from my sight before I change my mind about your 'passing' status.")
+
+# Default/Catch-all
+else:
+    print(f"Well, {name}, your grades are... a collection of symbols. Mostly disappointing, as expected.")
+    print("Off you go. Don't let the door hit you on the way to your mundane future.")
+
+print(f"Game over, {name}. Or is it just beginning? Heh heh heh.")
+# --- End of Reimplemented Monster's Game Ending Sequence ---
